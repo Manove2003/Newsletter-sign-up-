@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="icon.png" type="image/x-icon"> 
+    <title>New Leters</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <main class="container">
+        <div class="box" id="firstpage">
+             <div class="text">
+                <h1>Stay updated!</h1>
+                <p>Join 600,000+ product managers receving monthly updates on:</p>
+              <div>
+                  <div class="combine">
+                  <img src="icon-success.svg" alt="success">
+                  <p>Product discovery and building what matters</p>
+                  </div>
+                  <div class="combine">
+                     <img src="icon-success.svg" alt="success">
+                    <p>Measuring to ensure updates are a success </p>
+                  </div>
+                  <div class="combine">
+                    <img src="icon-success.svg" alt="">
+                    <p>And much more!</p>
+                  </div>
+              </div>    
+                <div class="mailbox">
+                  <div class="invalid">
+                  <label for="emailField">Email address</label>
+                  <p  id="errormsg"  style="display: none;">Valid email required</p>
+                   </div>
+                   <input type="email" id="emailField" placeholder="ash@loremcompany.com" required >        
+                   <button id="submit-button" >Subscribe to monthly newletter</button>
+                </div>  
+              </div>
+              <picture>
+                <source media="(max-width: 767px)" srcset="illustration-sign-up-mobile.svg" />
+                <source media="(min-width: 768px)"  srcset="illustration-sign-up-desktop.svg"  class="image"/>
+                <img src="illustration-sign-up-desktop.svg" alt="Images for Screen" />
+              </picture>
+        </div>
+        <div id="nextpage" style="display: none;" >
+          <div class="next"> 
+             <img src="icon-list.svg" alt="">
+             <h1>Thank for subscribing!</h1>
+             <p class="confirm">A confirmation email as been sent to 
+               <span id="getemail"></span>.
+               Please open it and click the button inside to confirm your subscription.                
+              </p>
+              <button  id="dismissbutton">Dismiss me</button>
+        </div>
+
+        </div>
+    </main>
+
+    <script>
+      const emailInput=document.getElementById('emailField');
+      const submitButton=document.getElementById('submit-button');
+      const errormessage=document.getElementById('errormsg');
+      const nextpage=document.getElementById('nextpage');
+      const firstpage=document.getElementById('firstpage')
+      const getemail=document.getElementById('getemail');
+
+        submitButton.addEventListener('click',()=>{
+        if(!isEmailValid(emailInput.value)){
+          firstpage.style.display="flex"
+          nextpage.style.display="none";
+          errormessage.style.display="flex";
+          errormessage.style.color="hsl(4, 100%, 57%)";
+          errormessage.style.fontWeight="700"
+          emailInput.style.color="red"
+          emailInput.style.backgroundColor="hsl(4, 30%, 87%)"
+          emailInput.style.border="2px solid hsl(4, 100%, 87%)"
+        }
+        else{
+          errormessage.style.display="none";
+          emailInput.style.border=" 2px solid hsl(231, 7%, 60%)"
+          nextpage.style.display="flex";
+          firstpage.style.display="none";
+          getemail.innerText=emailInput.value;
+        }
+                  
+      })
+      
+      function isEmailValid(emailField) {
+      const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return regex.test(emailField);
+      }
+
+    </script>
+</body>
+</html>
